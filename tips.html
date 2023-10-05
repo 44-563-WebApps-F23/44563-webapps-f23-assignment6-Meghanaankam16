@@ -46,12 +46,10 @@ function tips() {
     <input type="radio" id="divi" name="operation" value="division" onclick="chooseOp()"> 
     <label for="multi">div</label><br>
     </form>
-    
     <p id="calculationResult">Result will be displayed here.</p>
 
 <script>
     function chooseOp() {
-    
     const baseValue = document.getElementById("baseAmount").valueAsNumber;
     const tipValue = document.getElementById("tipPercent").valueAsNumber;
 
@@ -77,7 +75,6 @@ function tips() {
 
     document.getElementById("calculationResult").innerHTML = `${selectedOperation} of ${baseValue} and ${tipValue} is ${result}.`;
   }
-
 </script>
 
 </body>
