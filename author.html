@@ -3,8 +3,30 @@
    
 <title>Author page </title>
 
-    
- 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+ <style>
+    body {
+            padding: 20px;
+            background-color: antiquewhite;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+    .custom-btn {
+            width: 50%;
+            margin-top: 10px;
+        }
+        .form-control {
+            border: 2px solid #eb7d08; 
+            color: #52d738; 
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+ </style>
 <body>
     <h5>Author entry Meghana Ankam</h5>
 <h2>Getting input</h2>
@@ -12,17 +34,21 @@
 
 <form>
     <label for="secretAuthor">The hidden author name:</label>
-    <input type="password" id="secretAuthor" value="Dickens" required><br><br>
+    <input type="password" class="form-control" id="secretAuthor" value="Dickens" required><br><br>
 
     <label for="guessAuthor">Guess the author:</label>
-    <input type="text" id="guessAuthor" required><br><br>
+    <input type="text" id="guessAuthor" class="form-control" required><br><br>
 
-    <input type="button" value="Check the guess" onclick="checkAuthor()"><br><br>
+    <input type="button" class="btn btn-success custom-btn" value="Check the guess" onclick="checkAuthor()"><br><br>
     <p id="result"></p>
 </form>
+<div class="alert alert-warning mt-3" id="outOfGuesses" style="display:none;">
+    Sorry, ran out of guesses.
+</div>
 <script>
     let good = 0;
     let oops = 0;
+    let incorrectCount=0;
 
     function checkAuthor() {
         const secretAuthorInput = document.getElementById('secretAuthor').value;
@@ -34,9 +60,16 @@
         } else {
             oops++;
             alert("Sorry");
+            incorrectCount++;
         }
         const resultElement = document.getElementById('result');
         resultElement.innerHTML = `Correct Guesses: ${good} | Incorrect Guesses: ${oops}`;
+        if (incorrectCount === 7) {
+                    document.getElementById("outOfGuesses").style.display = "block";
+                    document.getElementById("checkGuessButton").onclick = function () {
+                        alert("Sorry, ran out of guesses.");
+                    }
+        }
     }
 </script>
 <div id="image">
